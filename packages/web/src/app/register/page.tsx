@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/Input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { registerSchema, RegisterForm } from "@/lib/validations";
 import { authApi } from "@/lib/api";
+import { CheckIcon } from "@/components/icons";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -69,19 +70,7 @@ export default function RegisterPage() {
             <CardContent className="pt-6">
               <div className="text-center">
                 <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                  <svg
-                    className="h-6 w-6 text-green-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                  <CheckIcon className="h-6 w-6 text-green-600" />
                 </div>
                 <h3 className="mt-4 text-lg font-medium text-gray-900">
                   Account created successfully!
