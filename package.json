@@ -1,0 +1,32 @@
+{
+  "name": "auth-n-tik",
+  "version": "0.0.6",
+  "description": "Cars Web Application",
+  "scripts": {
+    "start:web": "cd packages/web && npm run start",
+    "dev:web": "cd packages/web && npm run dev",
+    "build:web": "cd packages/web && npm run build",
+    "lint:web": "cd packages/web && npm run lint",
+    "start:api": "cd packages/api && npm start",
+    "dev:api": "cd packages/api && npm run start:dev",
+    "build:api": "cd packages/api && npm run build",
+    "lint:api": "cd packages/api && npm run lint",
+    "prepare": "husky",
+    "lint:all": "cd packages/web && npm run lint && cd ../api && npm run lint",
+    "build:all": "npm run build:web && npm run build:api",
+    "dev:all": "npm run dev:web & npm run dev:api"
+  },
+  "author": "Mahmoud Kassem",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0"
+  },
+  "lint-staged": {
+    "packages/web/**/*.{js,jsx,ts,tsx}": "cd packages/web && npm run lint",
+    "packages/api/**/*.{js,ts}": "cd packages/api && npm run lint"
+  }
+}

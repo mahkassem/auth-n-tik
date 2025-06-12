@@ -1,0 +1,40 @@
+# Fetch latest changes
+echo "Checking if branch is up to date with remote..."
+
+# Check if upstream is configured
+if git rev-parse --abbrev-ref @{u} >/dev/null 2>&1; then
+  git fetch
+
+  LOCAL=$(git rev-parse @)
+  REMOTE=$(git rev-parse @{u})
+  BASE=$(git merge-base @ @{u})
+
+  if [ $LOCAL = $REMOTE ]; then
+      echo "Branch is up to date with remote."
+      echo "No changes to push."
+      exit 0
+  elif [ $LOCAL = $BASE ]; then
+      echo "Your branch is behind the remote branch. Please pull the latest changes first."
+      exit 1
+  elif [ $REMOTE = $BASE ]; then
+      echo "Branch is ahead of remote. Ready to push."
+  else
+      echo "Branch has diverged from remote. Please pull and resolve conflicts first."
+      exit 1
+  fi
+else
+  echo "No upstream configured for this branch. Skipping remote check."
+fi
+
+# Check if version has been increased
+echo "Checking if version has been increased..."
+node .husky/scripts/check-version.js || exit 1
+
+# Run lint and build for all packages
+echo "Running lint checks for all packages..."
+npm run lint:all || exit 1
+
+echo "Building all packages..."
+npm run build:all || exit 1
+
+echo "Pre-push checks passed! ✅"
