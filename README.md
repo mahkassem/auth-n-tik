@@ -26,7 +26,7 @@ make dev-all
 
 **That's it!** 🎉
 
-- **API:** <http://localhost:8000> (Swagger: <http://localhost:8000/api>)
+- **API:** <http://localhost:8000> (Swagger: <http://localhost:8000/api/docs>)
 - **Web:** <http://localhost:3000>
 - **MongoDB:** localhost:27017
 
